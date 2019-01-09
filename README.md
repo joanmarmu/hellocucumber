@@ -205,3 +205,18 @@ Failures:
 1 Scenario (1 failed)
 3 steps (1 failed, 2 passed)
 That’s progress! The first two steps are passing, but the last one is failing.
+
+# STEP3.2 See scenario reported as passing
+Let’s do the simplest possible thing to make the scenario pass. In this case, that’s simply to make our function return Nope:
+
+function isItFriday(today) {
+  return 'Nope';
+}
+Run Cucumber again:
+
+...
+
+1 Scenario (1 passed)
+3 steps (3 passed)
+0m00.003s
+Congratulations! You’ve got your first green Cucumber scenario.
