@@ -1,0 +1,23 @@
+{
+  "name": "hellocucumber",
+  "version": "1.0.0",
+  "description": "In this quick tutorial you will learn how to:",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joanmarmu/hellocucumber.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joanmarmu/hellocucumber/issues"
+  },
+  "homepage": "https://github.com/joanmarmu/hellocucumber#readme",
+  "devDependencies": {
+    "cucumber": "^5.1.0"
+  }
+}
