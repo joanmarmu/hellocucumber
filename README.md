@@ -220,3 +220,64 @@ Run Cucumber again:
 3 steps (3 passed)
 0m00.003s
 Congratulations! You’ve got your first green Cucumber scenario.
+
+# STEP 4.1 Add another failing test 🔗︎
+The next thing to test for would be that we also get the correct result when it is Friday.
+
+Update the is-it-friday-yet.feature file:
+
+Feature: Is it Friday yet?
+  Everybody wants to know when it's Friday
+
+  Scenario: Sunday isn't Friday
+    Given today is Sunday
+    When I ask whether it's Friday yet
+    Then I should be told "Nope"
+
+  Scenario: Friday is Friday
+    Given today is Friday
+    When I ask whether it's Friday yet
+    Then I should be told "TGIF"
+We’ll need to add a step definition to set today to “Friday”:
+
+Given('today is Friday', function () {
+  this.today = 'Friday';
+});
+When we run this test, it will fail.
+
+.....F
+
+Failures:
+
+1) Scenario: Friday is Friday # features/is_it_friday_yet.feature:9
+   ✔ Given today is Friday # features/step_definitions/stepdefs.js:8
+   ✔ When I ask whether it's Friday yet # features/step_definitions/stepdefs.js:16
+   ✖ Then I should be told "TGIF" # features/step_definitions/stepdefs.js:20
+       AssertionError [ERR_ASSERTION]: 'Nope' == 'TGIF'
+           + expected - actual
+
+           -Nope
+           +TGIF
+
+           at World.<anonymous> (/private/tmp/tutorial/hellocucumber/features/step_definitions/stepdefs.js:21:10)
+
+2 scenarios (1 failed, 1 passed)
+6 steps (1 failed, 5 passed)
+That is because we haven’t implemented the logic yet! Let’s do that next.
+
+# STEP 4.2 Make it pass 🔗︎
+We should update our statement to actually evaluate whether or not today is equal to "Friday".
+
+function isItFriday(today) {
+  if (today === "Friday") {
+    return "TGIF"; 
+  } else {
+    return "Nope";
+  }
+}
+Run Cucumber again:
+
+......
+2 scenarios (2 passed)
+6 steps (6 passed)
+0m00.002s
