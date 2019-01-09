@@ -157,3 +157,51 @@ Warnings:
 3 steps (1 pending, 2 skipped)
 0m00.001s
 Cucumber found our step definitions and executed them. They are currently marked as pending, which means we need to make them do something useful.
+
+# STEP 3.1 See scenario reported as failing 🔗︎
+The next step is to do what the comments in the step definitions is telling us to do:
+
+Write code here that turns the phrase above into concrete actions
+
+Try to use the same words in the code as in the steps.
+
+--Ubiquitous Language
+
+If the words in your steps originated from conversations during an Example Mapping session, you’re building a Ubiquitous Language, which is a great way to make your production code and test easier to understand and maintain.
+
+Change your step definition code to this:
+
+const assert = require('assert');
+const { Given, When, Then } = require('cucumber');
+
+function isItFriday(today) {
+  // We'll leave the implementation blank for now
+}
+
+Given('today is Sunday', function () {
+  this.today = 'Sunday';
+});
+
+When('I ask whether it\'s Friday yet', function () {
+  this.actualAnswer = isItFriday(this.today);
+});
+
+Then('I should be told {string}', function (expectedAnswer) {
+  assert.equal(this.actualAnswer, expectedAnswer);
+});
+Run Cucumber again:
+
+..F
+
+Failures:
+
+1) Scenario: Sunday is not Friday # features/is_it_friday_yet.feature:4
+   ✔ Given today is Sunday # features/step_definitions/stepdefs.js:8
+   ✔ When I ask whether it's Friday yet # features/step_definitions/stepdefs.js:12
+   ✖ Then I should be told "Nope" # features/step_definitions/stepdefs.js:16
+       AssertionError [ERR_ASSERTION]: undefined == 'Nope'
+           at World.<anonymous> (/private/tmp/tutorial/hellocucumber/features/step_definitions/stepdefs.js:17:10)
+
+1 Scenario (1 failed)
+3 steps (1 failed, 2 passed)
+That’s progress! The first two steps are passing, but the last one is failing.
